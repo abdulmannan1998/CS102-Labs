@@ -1,0 +1,10 @@
+import cs1.SimpleURLReader;
+
+public class Lab02 {
+   public static void main( String[] args) {
+      SimpleURLReader test = new SimpleURLReader("http://www.cs.bilkent.edu.tr/~david/housman.txt");
+      test.getPageContents();
+      test.getLineCount();
+      
+   }
+}

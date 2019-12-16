@@ -1,0 +1,29 @@
+import cs1.SimpleURLReader;
+
+public class MySimpleURLReader extends SimpleURLReader {
+   
+   String url;
+   
+   public MySimpleURLReader (String Url) {
+      super(Url);
+      url = Url;
+   }
+   
+   public String getURL() {
+      return url;
+   }
+   
+   public String getName() {
+      for( int x = url.length() - 1; x >= 0; x--) {
+         if( url.charAt(x) == '/') {
+            return url.substring( x + 1);
+         }
+      }
+      return "";
+   }
+   
+   @Override
+   public String getPageContents() {
+      return super.getPageContents().substring(4);
+   }
+}

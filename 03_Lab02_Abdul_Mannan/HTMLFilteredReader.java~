@@ -1,0 +1,38 @@
+import cs1.SimpleURLReader;
+
+public class HTMLFilteredReader extends MySimpleURLReader {
+   
+   private String filter = super.getPageContents();
+   
+   public HTMLFilteredReader( String url) {
+      super(url);
+   }
+   
+   public String getPageContents() {
+      String output = "";
+      int x = 0;
+      while ( x < filter.length()) {
+         while( filter.charAt(x) == '<' || filter.charAt(x) == '&') {
+            if( filter.charAt(x) == '<') {
+               do {
+                  x++;
+               }while( filter.charAt(x) != '>'); 
+            }
+            else if( filter.charAt(x) == '&') {
+               do {
+                  x++;
+               }while( filter.charAt(x) != ';'); 
+            }
+            x++;
+         }
+         output = output + filter.charAt(x);
+         x++;
+      }
+      return output;
+   }
+   
+   public String getUnfilteredPageContents() {
+      return filter;
+   }
+   
+}
