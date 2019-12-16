@@ -1,0 +1,29 @@
+CS 102                   Section: 3
+Name: Mannan Abdul       ID: 21801066
+Date: 19/02/2019
+Time Spent: 4 hrs
+Code Status: Working
+
+1st error: Semi-colon missing. Added semi-colon to rectify problem.
+2nd error: Class (HangGame) is declared but there is no file by that name. Renamed the file to HangGame.java
+3rd error: Again Class (Hangman) is declared but there is no file by that name. Renamed the file to Hangman.java
+4th error: Class (TryThis) is declared but there is no file by that name. Renamed the file to TryThis.java
+5th error: Class (SecretWord) is declared but there is no file by that name. Renamed the file to SecretWord.java
+6th error: Class (HangmanProcess) is declared but there is no file by that name. Renamed the file to HangmanProcess.java
+7th error: Symbol not found. Turns out paranthesis weren't present after name of the method.
+8th error: Systen typed instead of System.
+9th error: prinltn typed instead of println
+10th error: Symbol not found. Needed to declare an object of a class to access method in that class.
+11th error: Symbol not found. needed to add name of the class before the name of the variable to access it in another class.
+12th error: String Buffer hadn't been initiated. Doing thta removed the error.
+13th error: Symbol not found. game from hangman
+14th error: typo
+
+By this time, I realised that I was going about this wrong, so picking up other groups' templates and code, I added it all
+to my own and arranged it to get a clearer sense of what was going on. I deleted all the non-essential code and kept the rest.
+Then I had to clear out all the speeling mistakes and missing semi-colons. After that since my group had declared all 
+properties as String, I had to change them to StringBuffer and also had to change the methods to return String by adding
+".toString" to all the variables we were getting. Then, I had to rewrite the TryThis method as I couldn't make heads
+or tails of the other groups' code. One last problem that occured was that the gamw wouldn't end one way or another. Eventually
+I discovered that we had to compare the StringBuffer by converting it to String first. After that the code Started working
+fine as can be checked.

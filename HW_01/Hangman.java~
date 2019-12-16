@@ -1,0 +1,106 @@
+/**
+ * piece5 of the Hangman game
+ * @author Ziya Mukhtarov, Javid Baghirov, Mokhlaroyim Raupova, Mannan Abdul, Alper Sari, Adeem Adil Khatri, Orazmuhammet Bayramov
+ * @version 13.02.2019
+ */
+public class Hangman
+{
+    private String secretWord;
+    private String allLetters;
+    private String usedLetters;
+    private int numberOfIncorrectTries;
+    private int maxAllowedIncorrectTries;
+    private String knownSoFar;
+    
+    /**
+     */
+    public Hangman()
+    {
+    }
+    
+    /**
+     * Returns all the available letters
+     * @return all the available letters
+     */
+    public String getAllLetters()
+    {
+        return allLetters;
+    }
+    
+    /**
+     * Returns the used letters
+     * @return the used letters
+     */
+    public String getUsedLetters()
+    {
+        return usedLetters;
+    }
+    
+    /**
+     * Returns the number of incorrect tries so far
+     * @return the number of incorrect tries so far
+     */
+    public int getNumOfIncorrectTries()
+    {
+        return numberOfIncorrectTries;
+    }
+    
+    /**
+     * Returns the number of maximum allowed incorrect tries
+     * @return the number of maximum allowed incorrect tries
+     */
+    public int getMaxAllowedIncorrectTries()
+    {
+        return maxAllowedIncorrectTries;
+    }
+    
+    
+    /**
+     * Returns the currently known word 
+     * @return the currently known word 
+     */
+    public String getKnownSoFar()
+    {
+        return knownSoFar;
+    }
+    
+    /**
+     * Returns the secret word
+     * @return the secretword
+     */
+    public String getSecretWord()
+    {
+        return secretWord;
+    }
+    
+    /**
+     * @param letter 
+     */
+    public void tryThis (char letter)
+    {
+    }
+    
+    /**
+     * Checks whether the game has ended
+     * @return true - if the game has already ended, false - otherwise
+     */
+    public boolean isGameOver()
+    {
+        return (knownSoFar.equals (secretWord) || hasLost());
+    }
+    
+    /**
+     * Checks whether the game is lost
+     * @return true - if the game is lost, false - otherwise
+     */
+    public boolean hasLost()
+    {
+        return numberOfIncorrectTries > maxAllowedIncorrectTries;
+    }
+    
+    /**
+     */
+    private void chooseSecretWord ()
+    {
+    }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20160913-225446">
+  <project autorefresh="false" main="Lab06" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="Lab06.java" package="" timestamp="02-May-2019 10:43:42">
+        <select from="993" to="993"/>
+        <scroll column="179" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath/>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences>
+      <preference name="master.jvm.xmx" value="default"/>
+    </preferences>
+  </project>
+</drjava>

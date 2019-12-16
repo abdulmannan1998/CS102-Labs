@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20160913-225446">
+  <project autorefresh="false" build="classes/" main="CardGameTest" root="src/" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="cardgame/ScoreCard.java" package="cardgame" timestamp="15-Feb-2018 09:06:48">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="CardGameTest.java" package="" timestamp="15-Feb-2018 09:03:42">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="MyCardGame.java" package="" timestamp="15-Feb-2018 09:28:46">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="cardgame/Card.java" package="cardgame" timestamp="06-Mar-2019 10:49:13">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="cardgame/CardGame.java" package="cardgame" timestamp="06-Mar-2019 10:49:13">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="cardgame/Cards.java" package="cardgame" timestamp="06-Mar-2019 10:49:38">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="cardgame/Player.java" package="cardgame" timestamp="06-Mar-2019 11:01:28">
+        <select from="220" to="220"/>
+        <scroll column="0" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath/>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

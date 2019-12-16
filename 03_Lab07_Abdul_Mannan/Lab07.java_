@@ -1,0 +1,65 @@
+public class Lab07 {
+  
+  
+  public static void main(String[] args) { 
+  
+    
+    List list = new List();
+    
+    // Adding nodes to the head
+    list.addToHead("ee");
+    list.addToHead("dd");
+    list.addToHead("cc");
+    list.addToHead("bb");
+    list.addToHead("aa");
+    System.out.println("Adding to head: " + list);
+    
+    // Adding nodes to the tail
+    list.addToTail("zz");
+    System.out.println("Adding to tail: " + list);
+    
+    // Remove from head
+    System.out.println("Item removed: " + list.removeFromHead());
+    System.out.println("Removing from head: " + list);
+    
+    // Get Data
+    int index = 2;
+    System.out.println("Data at index " + index + " is " + list.getData(index));  
+    
+    // Print
+    list.print();
+    System.out.println();
+    
+    // Print Reverse
+    System.out.print("List in reverse: ");
+    list.printReverse();
+    System.out.println();
+    
+    // Contains
+    String elementToCheck = "cc";
+    if (list.contains(elementToCheck)) {
+      System.out.println(elementToCheck + " is in list.");
+    } 
+    else {
+      System.out.println(elementToCheck + " is not in list.");
+    }
+    
+    // Ordered
+    if (list.isOrdered()) {
+      System.out.println("List is in order.");
+    }
+    else {
+      System.out.println("List is not in order.");
+    }
+    
+   // creating from an array with multiple strings
+    String arrayOfStrings[] = new String[2];
+    arrayOfStrings[0] = "hello";
+    arrayOfStrings[1] = "abcdef";
+    System.out.println(list.createFrom(arrayOfStrings));
+    
+    // creating from an array with a single string
+    String str = "hello";
+    System.out.println(list.createFrom(str));
+  }
+}
