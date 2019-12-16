@@ -1,0 +1,9 @@
+public class Square extends Rectangle{
+   //properties
+   private int side;
+
+   //constructor
+   public Square( int side) {
+      super(side, side);
+   }
+}

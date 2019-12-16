@@ -1,0 +1,18 @@
+public class TestIterators {
+   Iterator i, j;
+   
+   i = new IntBagIterator( bag);
+   
+   while ( i.hasNext() ) 
+   {
+      System.out.println( i.next() );
+      
+      j = new IntBagIterator( bag);
+      // j = bag.iterator();
+      
+      while ( j.hasNext() )
+      {
+         System.out.println( "--" + j.next() );
+      }
+   }
+}
