@@ -1,0 +1,196 @@
+/**
+ * This class is used to create a game that shows balloons in a frame.
+ * It is used to count how many balloons are burst
+ * at the same time. The score is counted and the game is timed.
+ * @author Abdul Mannan
+ * @version 1.0, 2 April 2019
+ */
+import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.event.*;
+import shapes.*;
+import java.util.Iterator;
+import java.awt.Color;
+import java.awt.Dimension;
+public class BalloonsGamePanel extends JPanel {
+  
+  // Constants
+  private static final int WIDTH = 800;
+  private static final int HEIGHT = 800;
+  private static final int UPDATE_AFTER = 250;
+  private static final int NUMBER_OF_BALLOONS_TO_INITIALIZE = 25;
+  private static final int MINIMUM_NUMBER_OF_BALLOONS = 5;
+  private static final int NO_OF_SECONDS = 61;
+  
+  // Variables
+  ShapeContainer balloons;
+  Timer timer;
+  int score;
+  int timeElasped;
+  JLabel scoreLabel = new JLabel();
+  JLabel timeElaspedLabel = new JLabel();
+  MouseListener pin;
+  
+  // Constructor
+  
+  /**
+   * Constructor for class BalloonsGamesPanel.
+   * Sets the window and initilizes the game frame to default values.
+   * @param No input parameters.
+   */
+  public BalloonsGamePanel () {
+    // Adding labels to frame
+    this.add(this.scoreLabel);
+    this.add(this.timeElaspedLabel);
+    
+    // Setting frame window
+    this.setBackground(Color.white);
+    this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+    
+    // Creating object of inner class
+    this.pin = new Pin();
+    
+    // Creating a timer
+    this.timer = new Timer(UPDATE_AFTER, new GrowListener());
+    
+    // Initializing game
+    this.initializeGame();
+  }
+  
+  
+  /**
+   * This method initializes the game. Sets default values for the game.
+   * @param No input parameters.
+   * @return Does not return anything.
+   */
+  private void initializeGame () {
+    // Setting default values
+    this.balloons = new ShapeContainer();
+    this.timeElasped = 0;
+    this.score = 0;
+    
+    // Creating default labels
+    this.scoreLabel.setText("Score: " + this.score);
+    this.timeElaspedLabel.setText("Elasped Time: " + this.timeElasped);
+    
+    // Adds balloons randomly to the frame
+    this.addBalloonsRandomly(NUMBER_OF_BALLOONS_TO_INITIALIZE, WIDTH, HEIGHT);
+    
+    // Adding mouse listener 
+    this.addMouseListener(this.pin);
+    
+    // Starting timer
+    this.timer.start();
+      
+  }
+  
+  /**
+   * This method draws circles on the frame. It selects a balloons once and once only and draws it on the screen.
+   * @param Graphics g, which is the component.
+   * @return Does not return anything.
+   */
+  @Override
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Iterator<Shape> iterator = balloons.iterator();
+    while (iterator.hasNext()) {
+      ((Drawable)iterator.next()).draw(g);
+    }
+  }
+  
+  
+  /**
+   * This method draws circles on the frame randomly. It creates random x and y coordinates indicating the position
+   * on the screen.
+   * @param int numberOfBalloons, the number of balloons to add to the frame.
+   * @param int width, the width of the frame.
+   * @param int height, the height of the frame.
+   * @return Does not return anything.
+   */
+  private void addBalloonsRandomly (int numberOfBalloons, int width, int height) {
+    for (int i = 0 ; i < numberOfBalloons ; i++) {
+      int randomXCoordiate = (int)(Math.random() * (double)width);
+      int randomYCoordiate = (int)(Math.random() * (double)height);
+      Balloon temp = new Balloon(randomXCoordiate, randomYCoordiate);
+      this.balloons.add(temp);
+    }
+  }
+  
+  /**
+   * This is an inner class that carries out specific functions depending on the action performed.
+   * @author Abdul Mannan
+   * @version 1.0, 2 April 2019
+   */
+  private class GrowListener implements ActionListener {
+    
+  /**
+   * This method grows the size of the balloon and updates the time. It keeps track so that there is atleast a minimum
+   * number of balloons in the frame. If the game ends, it asks if the user wants to play again. If yes, it initializes
+   * the game again.
+   * @param ActionEvent event, details of the event.
+   * @return Does not return anything.
+   */
+     int count = 0;
+     
+    @Override
+    public void actionPerformed(ActionEvent event) {
+      Iterator<Shape> iterator = BalloonsGamePanel.this.balloons.iterator();
+      while (iterator.hasNext()) {
+        ((Balloon)iterator.next()).grow();
+        BalloonsGamePanel.this.timeElaspedLabel.setText("Time elasped: " + BalloonsGamePanel.this.timeElasped);
+      }
+      
+      count += 1;
+      
+      // removing selected balloons from screen and adding more
+      BalloonsGamePanel.this.balloons.removeSelected();
+      if (BalloonsGamePanel.this.balloons.size() < MINIMUM_NUMBER_OF_BALLOONS) {
+        BalloonsGamePanel.this.addBalloonsRandomly(1, BalloonsGamePanel.this.getWidth(), BalloonsGamePanel.this.getHeight());
+      }
+      
+      BalloonsGamePanel.this.addBalloonsRandomly(1, BalloonsGamePanel.this.getWidth(), BalloonsGamePanel.this.getHeight());
+      
+      BalloonsGamePanel.this.repaint();
+      if(count % 4 == 0)
+         BalloonsGamePanel.this.timeElasped += 1;
+      // The maximum time
+      if (BalloonsGamePanel.this.timeElasped >= NO_OF_SECONDS) {
+        BalloonsGamePanel.this.timer.stop();
+        BalloonsGamePanel.this.removeMouseListener(BalloonsGamePanel.this.pin);
+        
+        // Play Again dialog
+        int playAgain = JOptionPane.showConfirmDialog(BalloonsGamePanel.this, "Play again?", "Ballon Game", 0);
+        if (playAgain == 0) {
+          BalloonsGamePanel.this.initializeGame();
+        }
+      } 
+    }  
+  }
+  
+  /**
+   * This is an inner class that acts as a pin. It simulates the mouse clicks to pop balloons.
+   * @author Abdul Mannan
+   * @version 1.0, 2 April 2019
+   */
+  
+  // acts as pin, counts the number of balloons popped if 2 or more popped at the same time
+  private class Pin extends MouseAdapter {
+    
+  /**
+   * This method pops the balloons depending on the position of the click. If the number of balloons popped are more 
+   * than 2, the score is updated.
+   * @param MouseEvent, details of the event of the mouse.
+   * @return Does not return anything.
+   */
+    @Override
+    public void mousePressed (MouseEvent event) {
+      int numberOfBalloonsPoppedAtSameTime = BalloonsGamePanel.this.balloons.selectAllAt(event.getX(), event.getY());
+      
+      if (numberOfBalloonsPoppedAtSameTime >= 2) {
+        BalloonsGamePanel.this.score += numberOfBalloonsPoppedAtSameTime;
+        BalloonsGamePanel.this.scoreLabel.setText("Score: " + BalloonsGamePanel.this.score);
+        BalloonsGamePanel.this.timeElaspedLabel.setText("Time: " + BalloonsGamePanel.this.timeElasped);
+      }
+    }
+  }
+}
